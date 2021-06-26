@@ -26,7 +26,7 @@ if exist projectBuilder (
 )
 
 projectBuilder\bin\luvit.exe projectBuilder uploadFromProjectInfo --this projectBuilder --project build.project.json --info "packageinfo.json" --cookie %cookie%
-projectBuilder\bin\luvit.exe projectBuilder build --this projectBuilder --project build.project.json --output "out/%name%.rbxmx"
+projectBuilder\bin\luvit.exe projectBuilder build --this projectBuilder --project build.project.json --output "out/build.rbxmx"
 
 echo cleanup . . .
 if %versionCP% equ t (
