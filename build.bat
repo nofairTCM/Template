@@ -13,6 +13,12 @@ if not exist .\src\version.txt if exist packageinfo.json (
   set versionCP=t
   copy .\packageinfo.json .\src\version.txt
 )
+set changelogCP=f
+if not exist .\src\changelog.txt if exist changelog.txt (
+  echo changelog file copied into project folder
+  set changelogCP=t
+  copy .\changelog.txt .\src\changelog.txt
+)
 if not exist out (
   mkdir out
 )
@@ -36,4 +42,8 @@ if %versionCP% equ t (
 if %readmeCP% equ t (
   echo readme file removed from project folder
   del .\src\readme.lua
+)
+if %changelogCP% equ t (
+  echo changelog file removed from project folder
+  del .\src\changelog.txt
 )
