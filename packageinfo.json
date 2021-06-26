@@ -1,0 +1,16 @@
+{
+    "name": "template",
+    "author": "qwreey",
+    "import": [],
+    "github": "",
+    "lic": "MIT",
+    "info": "template project",
+    "publishStatus": "RELEASE",
+    "version": "1.1.1",
+    "majorVersion": 1,
+    "buildVersion": 1,
+    "publishVersion": 1,
+    "toolboxID": "7005703463",
+    "icon": "",
+    "docs": ""
+}

@@ -1,0 +1,8 @@
+# build output folder
+out
+
+# project builder
+projectBuilder 
+
+# build output file
+.rbxmx
