@@ -18,10 +18,6 @@ jobs:
 
   build:
     needs: setup
-    env:
-      NAME: MaterialUI
-      PROJECT: build.project.json
-      INFO: src\version.txt
     runs-on: windows-latest
     steps:
       - name: Download this repo
