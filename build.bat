@@ -5,7 +5,7 @@ set readmeCP=f
 if not exist .\src\readme.lua if exist README.md (
   echo Readme file copied into project folder
   set readmeCP=t
-  copy .\README.md .\src\readme.lua
+  copy .\README.md .\src\readme.txt
 )
 set versionCP=f
 if not exist .\src\version.txt if exist packageinfo.json (
