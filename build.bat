@@ -13,6 +13,9 @@ if not exist .\src\version.txt if exist packageinfo.json (
   set versionCP=t
   copy .\packageinfo.json .\src\version.txt
 )
+if not exist out (
+  mkdir out
+)
 
 echo checking project builder
 if exist projectBuilder (
