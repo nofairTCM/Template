@@ -1,0 +1,65 @@
+name: release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - master
+    - main
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Version
+        run: echo "VERSION=$(date +%Y%m%d)" >> $GITHUB_ENV
+    outputs:
+      version: ${{ env.VERSION }}
+
+  build:
+    needs: setup
+    env:
+      NAME: MaterialUI
+      PROJECT: build.project.json
+      INFO: src\version.txt
+    runs-on: windows-latest
+    steps:
+      - name: Download this repo
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: build / upload
+        shell: cmd
+        run: |
+          echo off
+          set cookie="${{ secrets.SECRETS_RBLXTOKEN }}"
+          build.bat
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: out
+          path: ${{ github.workspace }}/out/*
+
+  release:
+    needs: [setup, build]
+    env:
+      VERSION: ${{ needs.setup.outputs.version }}.${{ github.run_number }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download output
+        uses: actions/download-artifact@v2
+        with:
+          name: out
+          path: out
+
+      - name: Upload Plugin Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: out/*
+          name: ${{ env.VERSION }}
+          tag_name: ${{ env.VERSION }}
+          body: |
+            build by github workflows
